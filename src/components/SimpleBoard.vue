@@ -58,11 +58,7 @@ export default {
   name: 'simple',
   data () {
     return {
-      data: [
-        { year: null },
-        { title: null },
-        { info: null }
-      ],
+      data: [],
       name: null
     }
   },
