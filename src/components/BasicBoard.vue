@@ -93,11 +93,15 @@
         variant="outline-info"
         align="right"
         class="mr-1"
-        @click="info()"
+        @click="insertData()"
         >Add Movie</b-button>
     </b-row>
     <!-- Info modal -->
-    <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
+    <b-modal :id="infoModal.id"
+             :year="infoModal.year"
+             :title="infoModal.title"
+             :info="infoModal.info"
+             ok-only @hide="resetInfoModal">
       <pre>{{ infoModal.content }}</pre>
     </b-modal>
   </b-container>
@@ -124,7 +128,8 @@
         infoModal: {
           id: 'info-modal',
           year: '',
-          title: ''
+          title: '',
+          info: ''
         }
       }
     },
@@ -167,9 +172,27 @@
           //console.log('vm.moviedata :' + JSON.stringify(vm.data))
           //console.log(this.Items);
         })
-    },
-    insertData (name) {
-      this.todos.push({ name: name })
+      },
+    insertData (body) {
+      var vm = this
+      console.log("insertData body :" + JSON.stringify(body));
+      let year = body.year;
+      let title = body.title;
+      let info = body.info;
+      let param = {
+        "year" : year ? year : null,
+        "title" : title ? title : null,
+        "info" : info ? info : null
+      }
+      //console.log("testBody :" + typeof(testBody.year));
+      this.$http.post('http://localhost:3000/movies',param,{
+        headers: {
+            "Content-Type": "application/json"
+          }
+      }).then((result) => {
+          console.log("result : " + JSON.stringify(result));
+        })
+        
       // console.log(data)
       console.log(name)
     },

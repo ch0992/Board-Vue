@@ -1,15 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <b-nav tabs align="center">
-      <b-nav-item active><router-link to="/">SimpleBoard</router-link></b-nav-item>
-      <b-nav-item><router-link to="/board">BasicBoard</router-link></b-nav-item>
-      <b-nav-item><router-link to="/todo">Todo</router-link></b-nav-item>
-      <b-nav-item><router-link to="/movie">Movie</router-link></b-nav-item>
-      </b-nav>
-    </div>
-    <router-view/>
-  </div>
+  <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <b-nav-item><router-link to="/">SimpleBoard</router-link></b-nav-item>
+        <b-nav-item><router-link to="/board">BasicBoard</router-link></b-nav-item>
+        <b-nav-item><router-link to="/todo">Todo</router-link></b-nav-item>
+        <b-nav-item><router-link to="/movie">Movie</router-link></b-nav-item>
+      </b-navbar-nav>
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+  <router-view/>
+</div>
 </template>
 
 <style>
